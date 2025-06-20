@@ -75,7 +75,8 @@ The VNC lets me access the camera through the command ``` libcamera-hello --time
 ### Installing Dependencies
 To run Tensorflow lite, many dependencies need to be installed. These include ``` python3-pip ```, ```python3-setuptools```, ``` python3.11-venv ```, ``` python3-numpy```, ``` python3-pillow```, ``` python3-pygame```, ``` python3-picamera2 ```, ``` festival ```, and many more. 
 
-### Integrating a premade TFlite model
+### Integrating a premade Tensorflow Lite model
+To run the Tensorflow Lite model, I ran several lines of commands in order to start up the camera and the interface. I tested it on multiple objects to confirm that it worked, and it did.
 
 ## Challenges
 The first main challenge that I encountered was an error with this peice of code:
