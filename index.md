@@ -1,25 +1,19 @@
-# !!!!edits needed 
+# Custom Object Detection and Sorting 
 Project Name Needed<br>
 
-
-Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!
+<!---Replace this text with a brief description (2-3 sentences) of your project. This description should draw the reader in and make them interested in what you've built. You can include what the biggest challenges, takeaways, and triumphs from completing the project were. As you complete your portfolio, remember your audience is less familiar than you are with all that your project entails!-->
 
 <!---You should comment out all portions of your portfolio that you have not completed yet, as well as any instructions:-->
-
-```HTML 
-<!--- This is an HTML comment in Markdown -->
-<!--- Anything between these symbols will not render on the published site -->
-```
 
 | **Engineer** | **School** | **Area of Interest** | **Grade** |
 |:--:|:--:|:--:|:--:|
 | Aaron H | VCHS | Mechanical Engineering | Incoming Sophomore
 
-# !!!!edits needed
+<!---# !!!!edits needed
 **Replace the BlueStamp logo below with an image of yourself and your completed project. Follow the guide [here](https://tomcam.github.io/least-github-pages/adding-images-github-pages-site.html) if you need help.**
 
 ![Headstone Image](project)
-  
+
 # Final Milestone
 
 # !!!!edits needed
@@ -49,7 +43,7 @@ For your second milestone, explain what you've worked on since your previous mil
 - What needs to be completed before your final milestone 
 
 
-
+-->
 # First Milestone
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dWyWQxh6dHo?si=aaolCBvaJNcAtCRP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
