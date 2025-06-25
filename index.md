@@ -63,6 +63,8 @@ For this milestone, I set up the Raspberry Pi to be able to be controlled by my 
 ## Technical Progress
 ### SSH-ing into the Raspberry Pi
 When flashing the SD card for the Raspberry Pi, I set the hostname and login for the Raspberry Pi so I could SSH into it. I set up a way to quickly access the Raspberry Pi host without needing to run a complicated set of commands using Visual Studio Code. 
+<img src="rpi.png" width="600" height = "350">
+
 
 ### Setting up the VNC
 The VNC lets me access the camera through the command ``` libcamera-hello --timeout 0``` and lets me operate the Pi through PiOS. To set this up, I installed TigerVNC, which lets me SSH onto the Raspberry Pi, but more importantly, lets me view and edit all the files and confirgurations of the Pi easily.
