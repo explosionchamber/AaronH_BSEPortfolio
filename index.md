@@ -139,9 +139,10 @@ The next step for my project is to integrate my own Tensorflow Lite model from T
 | 2x MG995 Servos | Actuates lid | $14.69 | <a href="https://www.amazon.com/SIPYTOPF-Digital-Helicopter-Airplane-Control/dp/B0BNYMW9S9/"> Link </a> |
 | 170 Pin Breadboard | Circuitry | $5.99 | <a href="https://www.amazon.com/VKLSVAN-Solderable-Breadboard-Tie-Points-Breadboards/dp/B0CLYCZGN3/"> Link </a> |
 | HC-SR04 Ultrasonic Sensor | Distance Detection | $6.72 | <a href="https://www.amazon.com/HC-SR04-Ultrasonic-Distance-Measuring-MEGA2560/dp/B088BT8CDW/"> Link </a> |
-|3x 10KΩ Resistors
-
-
+| 3x 10KΩ Resistors | Voltage Divider Circuit | $3.99 | <a href="https://www.amazon.com/California-JOS-Carbon-Resistor-Tolerance/dp/B0BR68QQPF/"> Link </a> |
+| Jumper Wires | Electronic Connections | $3.99 | <a href="https://www.amazon.com/California-JOS-Breadboard-Optional-Multicolored/dp/B0BRTHR2RL/"> Link </a> |
+| Breadboard Wires | Breadboard Connections | $8.99 | <a href="https://www.amazon.com/560pcs-Breadboard-Jumper-Wires-Kit/dp/B0F26V7VY2/"> Link </a> |
+| DC Barrel Jack Adapter | 5V Power Supply | $1.89 | <a href="https://www.amazon.com/Female-2-1x5-5MM-2-5x5-5MM-Connector-5-5x2-1/dp/B0B7KG6FVH/"> Link </a>
 
 <!---
 # Other Resources/Examples
