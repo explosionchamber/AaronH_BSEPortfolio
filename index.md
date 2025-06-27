@@ -46,6 +46,8 @@ I trained a machine learning model to detect different kinds of trash by selecti
 ### Training a Machine Learning model
 After trying out a permade model, I used Teachable Machine to generate a Machine learning model that could detect the kind of trash that was being held in front of the camera. To get good results, I had to painstakingly select 200 images from 5 datasets for each category of trash. Then, I modified the epoch number to prevent the AI from being overtrainined, and after a lot of tweaking the settings I finally got a decent machine learning model.
 
+<img src="scan.png" width="325" height = "650">
+
 ### Getting the Machine Learning model onto the Raspberry Pi
 I uploaded the Raspberry Pi file into a brand new Python virtual environment to isolate it from the mess I made in the other ones, and then used SCP command to transfer the ML model to the Raspberry Pi. I then used code from my instructor to display the camera's input as a screen and also show the output of the model on the screen.
 
