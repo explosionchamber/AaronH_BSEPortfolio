@@ -64,6 +64,8 @@ I made my script by modifying the script from my instructor that took images, di
 ## Challenges
 The biggest challenge that came with this project was getting the custom model of Tensorflow Lite to run on the Raspberry Pi without issues. I thought it would be simple but it ended up taking an excessive amount of time. The premade Tensorflow Lite model's package was practically impossible to edit and insert new models into, so I had to find another way to make it. I tried many tutorials but none of them worked, and in the end we realized that Tensorflow Lite was no longer supported and nothing would run on the current version. Even the tutorial supplied by Adafruit, the one who made the project kit, ended up not working. In the end, I had to use a program made by my instructor in order to get my machine learning model up and running on the Raspberry Pi.
 
+<img src="training.png" width="300" height = "425">
+
 Another challenge that I had was trying to train the machine learning model. The issues mostly came from having horrible test samples, which had irrelevant subjects and confusing or repetitive backgrounds. Even after training the AI on thousands of images, it was still hopelessly bad. To fix this, I manually searched the database and hand-picked 200 images for each category that I thought were better for the AI model. I also disabled and merged categories that were either irrelevant, like electronic waste, or confusing to tell apart, such as cardboard and wood.
 
 ## Lessons Learned
