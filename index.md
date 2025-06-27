@@ -54,6 +54,8 @@ I uploaded the Raspberry Pi file into a brand new Python virtual environment to 
 ### Wiring the electronics
 I wired a 5V power source to a small breadboard to provide a 5V power supply to the ultrasonic sensor and the two servos. Then, I made a voltage divider circuit out of three 10KΩ resistors so that the Ultrasonic sensor could send 3.3V signals back to the Raspberry Pi through the GPIO(General Purpose Input/Output) pins. I also wired the servo signal pins to the GPIO pins and wired the voltage pins to the 5V power supply. Additionally, I re-soldered the wires going between the breadboard and GPIO pins on the Raspberry Pi to reduce their length.
 
+<img src="schematic.png" width="600" height = "450">
+
 ### Scripting the electronics
 I made my script by modifying the script from my instructor that took images, displayed them, and ran them through the machine learning model. I added packages for the servos and ultrasonic sensors so that they could work. To prevent the servos from jittering when they held angles, I made a function that set the angle of the servo through manual pulse width modulation. My script scans the object in front of it 50 times only if it is within range, and then runs it through my custom AI model. Then, based on what the model returns, it will move either the servo that operates the trash can lid or the recycle bin's lid. I also added some text on the UI(User Interface) to show the status of the electronics. I put all of this on a flowchart, which I then coded onto my Raspberry Pi.
 
@@ -144,6 +146,200 @@ The next step for my project is to integrate my own Tensorflow Lite model from T
 | Jumper Wires | Electronic Connections | $3.99 | <a href="https://www.amazon.com/California-JOS-Breadboard-Optional-Multicolored/dp/B0BRTHR2RL/"> Link </a> |
 | Breadboard Wires | Breadboard Connections | $8.99 | <a href="https://www.amazon.com/560pcs-Breadboard-Jumper-Wires-Kit/dp/B0F26V7VY2/"> Link </a> |
 | DC Barrel Jack Adapter | 5V Power Supply | $1.89 | <a href="https://www.amazon.com/Female-2-1x5-5MM-2-5x5-5MM-Connector-5-5x2-1/dp/B0B7KG6FVH/"> Link </a>
+
+# Project Code
+```
+#camera packages
+from picamera2 import Picamera2
+import cv2
+import numpy as np
+from tflite_runtime.interpreter import Interpreter # type: ignore
+from PIL import Image
+import RPi.GPIO as GPIO
+from time import sleep
+import time
+
+#Servo and sensor packages
+from gpiozero import AngularServo
+from gpiozero import DistanceSensor
+import pigpio
+
+#Defining servo ports
+servo0 = 18
+servo1 = 19
+
+#Defining servo movement (solving jitter issue)
+pi = pigpio.pi()
+ultrasonic = DistanceSensor(echo=21, trigger=20)
+def s0(angle):
+    pulse_width = 500 + (angle / 180.0) * 2000
+    pi.set_servo_pulsewidth(servo0, pulse_width)
+def s1(angle):
+    pulse_width = 500 + (angle / 180.0) * 2000
+    pi.set_servo_pulsewidth(servo1, pulse_width)
+#reset sevo
+s0(0)
+s1(0)
+
+def waitcheck(times):
+    start = time.time()           # Get the starting point
+    while time.time() - start < times:
+        # Do your repeating work here
+        frame = picam2.capture_array()
+        #print("DB array captured")
+        # Preprocess frame for model
+        image = cv2.resize(frame, (width, height))
+        
+        image = image.astype(np.float32) / 255.0
+        image = np.expand_dims(image, axis=0)
+
+# --- Load labels from file ---
+def load_labels(label_path):
+    with open(label_path, 'r') as f:
+        return [line.strip() for line in f.readlines()]
+
+# --- Set the input tensor for the interpreter ---
+def set_input_tensor(interpreter, image):
+    input_details = interpreter.get_input_details()[0]
+    interpreter.set_tensor(input_details['index'], image)
+
+# --- Run inference and return top result ---
+def classify_image(interpreter, image):
+    set_input_tensor(interpreter, image)
+    interpreter.invoke()
+
+    output_details = interpreter.get_output_details()[0]
+    output = interpreter.get_tensor(output_details['index'])[0]
+
+    #top_result = np.argmax(output)
+    return output
+
+# --- Setup paths ---
+MODEL_PATH = "/home/aaronh/fixed/model/model_unquant.tflite"
+LABEL_PATH = "/home/aaronh/fixed/model/labels.txt"
+
+# --- Load model and allocate tensors ---
+interpreter = Interpreter(MODEL_PATH)
+interpreter.allocate_tensors()
+input_details = interpreter.get_input_details()
+_, height, width, _ = input_details[0]['shape']
+
+# --- Load labels ---
+labels = load_labels(LABEL_PATH)
+print(labels)
+recyclability = ["T","R","R","R","R","R","R","T","T","T","N"]
+#resetting probability sum array
+probsum = np.zeros(len(labels), dtype=float)
+
+# --- Initialize Picamera2 ---
+picam2 = Picamera2()
+picam2.preview_configuration.main.size = (1000, 1000)
+picam2.preview_configuration.main.format = "RGB888"
+picam2.configure("preview")
+picam2.start()
+input_details = interpreter.get_input_details()[0]
+# --- Main loop ---
+
+def val():
+    #checks if distance is in range
+    global dist, G,R
+    dist = ultrasonic.distance
+    if dist <= 0.2:
+        valid = True
+        #text color is green
+        G = 255
+        R = 0
+    else:
+        valid = False
+        #text color is red
+        G = 0
+        R = 255
+    return valid
+
+#how many times it is scanned
+scantimes = 50
+#fixing camera not scanned issue
+first = 1
+#print("DB before loop")
+while True:
+    #print("DB loop start")
+    #captures an image with the camera
+    frame = picam2.capture_array()
+    #print("DB array captured")
+    # Preprocess frame for model
+    image = cv2.resize(frame, (width, height))
+    
+    image = image.astype(np.float32) / 255.0
+    image = np.expand_dims(image, axis=0)
+   
+    #list that contains all the probabilities
+    plist = np.array(classify_image(interpreter, image))
+    #print("DB start for loop")
+    label_text = val()
+    #print("DB text labelled")
+    if val() or first == 1:
+        #print("DB initiated")
+        probsum = np.zeros(len(labels), dtype=float)
+        for i in range (scantimes):
+            #print(i)
+            #captures an image with the camera
+            frame = picam2.capture_array()
+
+            # Preprocess frame for model
+            image = cv2.resize(frame, (width, height))
+    
+            image = image.astype(np.float32) / 255.0
+            image = np.expand_dims(image, axis=0)
+            
+            plist = np.array(classify_image(interpreter, image))
+            probsum += plist
+            if not val():
+                #resets the probability sum
+                probsum = np.zeros(len(labels), dtype=float)
+                break
+    #print("DB loop complete")
+    first = 0
+    top = labels[np.argmax(probsum)]
+    topprob = max(probsum)/scantimes
+    if max(probsum)<=0:
+        top = "N/A"
+
+    #is it within range or not   
+    cv2.putText(frame, f"{label_text}", (10, 30),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, G, R), 2)
+    
+    #input from ultrasonic
+    cv2.putText(frame, f"{round(dist,3)}", (10, 60),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, G, R), 2)
+    
+    #how sure is the AI? also what category does it think the item is in
+    cv2.putText(frame, f"{top} {round(topprob,3)}", (10, 90),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, G, R), 2)
+
+    #Name of the custom window
+    cv2.imshow("trash bin ahh", frame)
+
+    #controls servos
+    if not val() or recyclability[np.argmax(probsum)]=="N":
+        s0(0)
+        s1(0)
+    elif recyclability[np.argmax(probsum)] == "T":
+        s0(90)
+        s1(0)
+        waitcheck(5)
+    elif recyclability[np.argmax(probsum)] == "R":
+        s1(90)
+        s0(0)
+        waitcheck(5)
+    #resets the probability sum
+    probsum = np.zeros(len(labels), dtype=float)
+    
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cv2.destroyAllWindows()
+picam2.stop()
+```
 
 <!---
 # Other Resources/Examples
