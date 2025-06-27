@@ -178,6 +178,8 @@ The starter project that I chose is the Retro Arcade Console. When turned on, it
 **2x** Acrylic Main panels -> houses the electrical components  
 **4x** Acrylic Side panels -> joins the main panels  
 
+<img src="palm.jpg" width="500" height = "500">
+
 ## Challenges faced
 The main challenge of this starter project is soldering. The connections were very close to each other, and it was hard to hold the components in place, hold a solder, and hold the solder wire all at once with only two hands, especially as the components kept slipping out from undernes the circuit board as I was trying to solder them. The solder also kept getting dirty and burning the rubber part of the wires, which built up as ash on the solder joints. I had to remove all of those imperfections before my project could work.
 
