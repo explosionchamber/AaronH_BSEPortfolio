@@ -50,26 +50,25 @@ After trying out a permade model, I used Teachable Machine to generate a Machine
 I uploaded the Raspberry Pi file into a brand new Python virtual environment to isolate it from the mess I made in the other ones, and then used SCP command to transfer the ML model to the Raspberry Pi. I then used code from my instructor to display the camera's input as a screen and also show the output of the model on the screen.
 
 ### Wiring the electronics
-(voltage divider circuit)
+I wired a 5V power source to a small breadboard to provide a 5V power supply to the ultrasonic sensor and the two servos. Then, I made a voltage divider circuit out of three 10KΩ resistors so that the Ultrasonic sensor could send 3.3V signals back to the Raspberry Pi through the GPIO(General Purpose Input/Output) pins. I also wired the servo signal pins to the GPIO pins and wired the voltage pins to the 5V power supply. Additionally, I re-soldered the wires going between the breadboard and GPIO pins on the Raspberry Pi to reduce their length.
 
 ### Scripting the electronics
-I modified the script from my instructor
-servo jitter too
+I made my script by modifying the script from my instructor that took images, displayed them, and ran them through the machine learning model. I added packages for the servos and ultrasonic sensors so that they could work. To prevent the servos from jittering when they held angles, I made a function that set the angle of the servo through manual pulse width modulation. My script scans the object in front of it 50 times only if it is within range, and then runs it through my custom AI model. Then, based on what the model returns, it will move either the servo that operates the trash can lid or the recycle bin's lid. I also added some text on the UI(User Interface) to show the status of the electronics. I put all of this on a flowchart, which I then coded onto my Raspberry Pi.
+
+
 
 ## Challenges
 The biggest challenge that came with this project was getting the custom model of Tensorflow Lite to run on the Raspberry Pi without issues. I thought it would be simple but it ended up taking an excessive amount of time. The premade Tensorflow Lite model's package was practically impossible to edit and insert new models into, so I had to find another way to make it. I tried many tutorials but none of them worked, and in the end we realized that Tensorflow Lite was no longer supported and nothing would run on the current version. Even the tutorial supplied by Adafruit, the one who made the project kit, ended up not working. In the end, I had to use a program made by my instructor in order to get my machine learning model up and running on the Raspberry Pi.
 
 Another challenge that I had was trying to train the machine learning model. The issues mostly came from having horrible test samples, which had irrelevant subjects and confusing or repetitive backgrounds. Even after training the AI on thousands of images, it was still hopelessly bad. To fix this, I manually searched the database and hand-picked 200 images for each category that I thought were better for the AI model. I also disabled and merged categories that were either irrelevant, like electronic waste, or confusing to tell apart, such as cardboard and wood.
 
+## Lessons Learned
+I learned many lessons throughout this process, but one of the most important ones was the importance of doing research on whatever you are doing. I spent a lot of time and effort trying to get the custom model to work on the Raspberry Pi, only for the tutorial that supported it to be completely outdated. This could have been avoided if I had done slightly more research on the subject and found a better program to run the model on.
 
+Another lesson that I learned was about electronics and wiring. I about the importance of resistors, and how having the wrong voltage could have devastating consequences. I learned about how a voltage divider circuit works, which uses two resistors and outputs a voltage that is a set fraction of the input voltage, which I used for my ultrasonic sensor. I also learned that voltage always has to go to zero at the end of the circuit, or the "ground". When choosing the right power supply for my servos, I learned about current and how different servos drew different amounts of current, which dictated what power supply I had to use.
 
-## Lessons learned
-For your second milestone, explain what you've worked on since your previous milestone. You can highlight:
-- Technical details of what you've accomplished and how they contribute to the final goal
-- What has been surprising about the project so far
-- Previous challenges you faced that you overcame
-- What needs to be completed before your final milestone 
-
+## Next Steps
+After this milestone, my plan is to CAD an enclosure for the Raspberry Pi and all the main electrical components, and then to CAD two trash bins and the lids for the servos to actuate them. My third milestone is essentially the completion of my project.
 
 # First Milestone
 
