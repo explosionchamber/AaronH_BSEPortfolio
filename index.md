@@ -72,6 +72,8 @@ I designed my model to use three different types of screws. The fan and bottom p
 
 The wires were especially hard to assemble, even with all the design choices I made to try and make the wires easier to assemble. Because I condensed the wires beforehand, it made the connections much shorter and tighter. I had the breadbaord in a compartment and all the wires were threaded through a port on the lid onto the GPIO pins on the Raspberry Pi. This means I had to connected the breadboard wires to the Raspberry Pi with a lid in the way of everything. The wires ended up coming loose many times, and I had to go back, unscrew everything, and retry it. The ribbon cable was also getting very compressed due to the fact that I could not shorten in, which ended up making it lose signal with the camera. I had to rearrange many of the wires to find an orientation where it worked.
 
+<img src="expo.png" width="500" height = "600">
+
 Another assembly challenge was the 5V fan. The wires themselves were unnaturally short, and because it was mounted from the inside, It was very difficult to position the screwdriver in a way that would screw in the fan without disconnecting the wires.
 
 When attatching the camera, I realized that there were no m1 screws to be found, and anyways the holes were at such a tight tolerance that they closed up. In the end, I let the camera sit in the socket and secured it purely by the tension of the camera.
