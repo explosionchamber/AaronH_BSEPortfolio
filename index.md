@@ -153,6 +153,9 @@ The next step for my project is to integrate my own Tensorflow Lite model from T
 
 # Project Code
 ```
+#Input: Camera and Ultrasonic Sensor
+#Output: Servo 0 and Servo 1
+
 #camera packages
 from picamera2 import Picamera2
 import cv2
