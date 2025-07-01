@@ -129,6 +129,8 @@ I wired a 5V power source to a small breadboard to provide a 5V power supply to 
 ### Scripting the electronics
 I made my script by modifying the script from my instructor that took images, displayed them, and ran them through the machine learning model. I added packages for the servos and ultrasonic sensors so that they could work. To prevent the servos from jittering when they held angles, I made a function that set the angle of the servo through manual pulse width modulation. My script scans the object in front of it 50 times only if it is within range, and then runs it through my custom AI model. Then, based on what the model returns, it will move either the servo that operates the trash can lid or the recycle bin's lid. I also added some text on the UI(User Interface) to show the status of the electronics. I put all of this on a flowchart, which I then coded onto my Raspberry Pi.
 
+<img src="v1.drawio.png" width="400" height = "550">
+
 ## Challenges
 The biggest challenge that came with this project was getting the custom model of Tensorflow Lite to run on the Raspberry Pi without issues. I thought it would be simple but it ended up taking an excessive amount of time. The premade Tensorflow Lite model's package was practically impossible to edit and insert new models into, so I had to find another way to make it. I tried many tutorials but none of them worked, and in the end we realized that Tensorflow Lite was no longer supported and nothing would run on the current version. Even the tutorial supplied by Adafruit, the one who made the project kit, ended up not working. In the end, I had to use a program made by my instructor in order to get my machine learning model up and running on the Raspberry Pi.
 
