@@ -30,10 +30,61 @@ For your final milestone, explain the outcome of your project. Key details to in
 - What you hope to learn in the future after everything you've learned at BSE
 
 -->
+# Final Milestone
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WIRK_pGdIdA?si=Jmkf0DeEBADPxmr3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Milestone Overview
+
+Wiring work and CAD for the trash bins and electronics case, and 3D printing the parts
+
+INSERT IMAGE HERE
+
+I used Onshape to design a 3D models for my project. I used reference models from GrabCAD to get the dimensions of the electronics, and the modeled around them. I incorporated the Raspberry Pi, ultrasonic sensor, fan, power jack, camera, and all the circuitry into one case. I also re-soldered the wires to shorten their length to make them fit better in the case. Then, I designeded two trash bins, one with a trash symbol and the other with a recycling symbol, and a lid and hinge for the servos to actuate. Because of the innacurate dimensions, I had to reprint the lids.
+
+## Technical Progress
+### Shortening the Wires
+For every wire that wasn't going out to the servos, I shortened their length by cutting them in the middle, stripping the rubber covering of the ends of the wires, and soldering the wires back together. I did this to reduce chances for the wires to tangle as I was rewiring the circuits to fit through the hole in the 3D printed case I had designed.
+
+### CAD Work
+For the electronics case, I started with designing a case for the Raspberry Pi. One of the main challenges was to make something that was both possible to 3D print with minimal supports and possible to assemble. It also had to work well as a case in general. I took a Raspberry Pi 4B model off of GrabCAD and designed the lower part of the case around it. I also incorporated holes where a USB-C cable and an HDMI cable could be plugged in, giving power to the Raspberry Pi. I also added vents on both sides for the fan I was going to mount on the lid, so that air could get out of the closed box. I made the lid a separate part that could be screwed on to the bottom frame, so that I could put the Raspberry Pi in first during assembly. On the lid part, I made a socket where it could hold the breadboard, wire ports for the jumper wires and ribbon cable, and a holder for the DC powerjack, which powers the other components. To cool the whole system, I made an area where a 5V fan could be mounted at a slant angle to cool area most efficiently without getting in the way of components mounted on the main face of the lid. The DC powerjack was an interesting part of the design because it had no screw holes to attach to anything, so I had to design in a two part clamp to hold it in place, with one part of it attatched to the lid, and the other as a screw-in holder which tightened on the powerjack, holding it in place. I also designed screw ports to hold more parts. Because of the limitations of assembly and 3D printing, I made the sensor mount and wire cover two seperate parts. The sensor mount had a hole for the round parts of the ultrasonic sensor to stick out of, securing it. The wire cover was just a slanted cover at a 30% incline to combat the fact that 3D printers cannot print horizontally or close to it.
+
+The next thing that I had to model were the trash cans. They ended up taking a lot less time to model, as the only part I had to worry about were the servos. I modeled the trash cans to have a lid operated by a servo. On the front I modeled an image of a trash can on one, and a recycle symbol on another. I knew that my 3D printer could handle small 90 degree overhangs, so I knew that I could make 2mm deep symbols without too many issues. I started the modelling process by making a servo mount, where the top was left open for the servo horn to interact with lid. Because it wasn't too demanding in terms of constraints, I incorporated a design into the trash cans, trying to give them a futuristic look. Because of the servo was mounted on the side of the trash can, I was worried that it would tip over, so I extended the bottom edge of the trash can backwards to help support that. I was also worried that having the lid attatched only to the servo would make it wobble, so I added an axle and socket system on the other side to stabilize the lid. I also realized that the servo would be impossible to screw in sideways due to the servo holder blocking the holes, so I also made a rectangle hole in the side to let screws and a screwdriver in. I knew that my 3D printer could handle a bridge length that was similar to the floating length of the rectangle hole, so I let it stay. To ensure that the other overhangs would be 3D printabale, I used the fillet and chamfer tools to turn 90 degree overhangs into more forgiving slopes that also contributed to the overall aesthetic. For the lids, I realized that as they opened, they would interfere with the servos, so I plotted the motion of the lid as it opened and cut holes so that the lid would no longer interset with the servo. Then, I added back the side of the trash can so that there wouldn't be any openings in the trash can when it was closed, and also changed the bottom part accordingly.
+
+### 3D Printing
+Because of the long queue, and questionable print quality observed from other people's projects, filament color's I didn't like, and wait times in general, I chose to use my own 3D printers and filament for this project. My parts were printed on a Bambu Lab A1, an open air bedslinger printer, using gray PETG. During the design, there was a tradeoff of printing with support material and using more screws. One would be more wasteful, as printing with support material increases print time and makes waste each time the filament changes back to the other one, but the other would be harder to assemble and would look uglier. As a result, the lid was printed with supports and support material, which I thought was the best option because of the amount of functions it had to serve, such as hold all the external components, along with the breadboard. I had to print 5 parts for the electronics case, which took about 5 hours in total, split between four different prints. I had to reprint the bottom Raspberry Pi mount
+
+My next task was to print the two trash cans, the lids, and their lid axles. I printed them all at once for an overnight print, which used 300g of PETG and came scarily close to using all the filament, which would've stopped the print midway. The print ended up taking about 9 hours, all at once. As expected the print did deteriorate in quality when printing the 90 dergee overhangs, but it was in a way that was acceptable and had little effect on the function of the print as a whole. Due to the printer being open air, there was some warping of the bottom layers, but the built-in chamfer of the lower part of the trash can made it invisible when viewed from above. Warping happens when the plastic cools unevenly and center pulls on the outside edges, causing them to lift off the build plate and cause warping. I had my prints warp before, and after cleaning my build plate the warping became less severe.
+
+### Assembling
+I designed my model to use three different types of screws. The fan and bottom plate were attatched to the lid with m3 screws, or screws with a major diameter of 3mm. Every other part was attatched with m2.5 screws, where the parts were smaller and it would be hard to put larger screws or screw holes. The one exception was the wire cover, where the cover was too thin for the m2.5 screws, so I ended up using an m1.5 screw to secure it in place.
+
+The wires were especially hard to assemble, even with all the design choices I made to try and make the wires easier to assemble. Because I condensed the wires beforehand, it made the connections much shorter and tighter. I had the breadbaord in a compartment and all the wires were threaded through a port on the lid onto the GPIO pins on the Raspberry Pi. This means I had to connected the breadboard wires to the Raspberry Pi with a lid in the way of everything. The wires ended up coming loose many times, and I had to go back, unscrew everything, and retry it. The ribbon cable was also getting very compressed due to the fact that I could not shorten in, which ended up making it lose signal with the camera. I had to rearrange many of the wires to find an orientation where it worked.
+
+Another assembly challenge was the 5V fan. The wires themselves were unnaturally short, and because it was mounted from the inside, It was very difficult to position the screwdriver in a way that would screw in the fan without disconnecting the wires.
+
+When attatching the camera, I realized that there were no m1 screws to be found, and anyways the holes were at such a tight tolerance that they closed up. In the end, I let the camera sit in the socket and secured it purely by the tension of the camera.
+
+The assembly of the lid and trash bin went on without issues.
+
+## Challenges
+The main challenge of CAD and design is trying to satisfy all the design requirements at once, all while making the design look somewhat good. I ensured that my design had:
+-max overhang of 60 degrees
+-max bridge length of 10mm
+-decent durability with a minimum wall thickness of 2mm
+-flat surface to print on without supports
+-physically possible to be assembled once printed
+
+Another challenge that I had was related to the lids of the 3D printed trash bins. Due to a faulty GrabCAD model, My lid's clearances were completley innacurate. The space in between the two sections was too narrow so it couldn't fit onto the bin at all. Additionally, the clearances I had left out for the servos were completley off, so even if I had sanded down the attatchment points on the lid, It wouldn't even be possible to open. To fix this, all I could really do was to measure out the mistakes and reprint the lid so that it could work.
+
+Assembly of the electronics case proved to be challenging. I designed it to be as compact as possible so that it would take up the least amount of space needed, which resulted in the wires getting very pressed together, and occasionallly coming lose, forcing me to go back, take off the lid, rewire everything, and then screw it back on. I did this a few times before everything finally worked. Later on, I also had an issue with the resistors on the circuit board. I tried to replace the old ones, which my instructors said were weird because I had soldered redudant joints onto them, but when I tried them, my ultrasonic sensor broke down. Only the old ones worked, so I left it at that.
+
+Another issue I had related to design was the servo wires. I had forgot to make ports for the servo wires out of the electronics case. Since I didn't want to redesign and reprint something new, I ended up snapping off the wall that covered the distance from the fan to the base so that I could port the wires out from the back.
+
+## Lessons Learned
+I learned that online models can often contain innacuracies. For example, the GrabCAD model for the servos was outrageously innacurate. I ended up having to measure them myself in order to fix the issue. This also helped me realize that the only real way to make sure something is perfect is to test that it works in person, with all the parts at hand. On the CAD software, you cannot account for part durability, accuracy, tolerance, and it is sometimes very hard to spot unwanted intersections that can ruin part of a model. I was lucky that my electronics case went well without much issues, and although the trashcan lid not fitting was a GrabCAD error, it was also my fault for trusting the model completley and not doing measurements of my own.
 
 # Second Milestone
-
-**Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/9-2GtGsHa2s?si=hfRwwB2-s6Nt2tqi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   
