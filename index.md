@@ -183,17 +183,20 @@ def s1(angle):
 s0(0)
 s1(0)
 
-def waitcheck(times):
-    start = time.time()           # Get the starting point
-    while time.time() - start < times:
-        # Do your repeating work here
-        frame = picam2.capture_array()
-        #print("DB array captured")
-        # Preprocess frame for model
-        image = cv2.resize(frame, (width, height))
-        
-        image = image.astype(np.float32) / 255.0
-        image = np.expand_dims(image, axis=0)
+#define start
+start=0
+def countdownreset():
+    global start
+    start = time.time()   
+def timeout():
+    global start
+    elapsed = time.time()-start
+    if elapsed > 3:
+        return True
+    else:
+        return False
+    
+
 
 # --- Load labels from file ---
 def load_labels(label_path):
@@ -217,8 +220,8 @@ def classify_image(interpreter, image):
     return output
 
 # --- Setup paths ---
-MODEL_PATH = "/home/aaronh/fixed/model/model_unquant.tflite"
-LABEL_PATH = "/home/aaronh/fixed/model/labels.txt"
+MODEL_PATH = "/home/aaronh/fixed/model2/model_unquant.tflite"
+LABEL_PATH = "/home/aaronh/fixed/model2/labels.txt"
 
 # --- Load model and allocate tensors ---
 interpreter = Interpreter(MODEL_PATH)
@@ -229,7 +232,7 @@ _, height, width, _ = input_details[0]['shape']
 # --- Load labels ---
 labels = load_labels(LABEL_PATH)
 print(labels)
-recyclability = ["T","R","R","R","R","R","R","T","T","T","N"]
+recyclability = ["T","R","R","R","T"]
 #resetting probability sum array
 probsum = np.zeros(len(labels), dtype=float)
 
@@ -258,12 +261,16 @@ def val():
         R = 255
     return valid
 
+lastscan = "None"
+lastprob = 0
 #how many times it is scanned
 scantimes = 50
 #fixing camera not scanned issue
 first = 1
 #print("DB before loop")
 while True:
+    #resets the probability sum
+    probsum = np.zeros(len(labels), dtype=float)
     #print("DB loop start")
     #captures an image with the camera
     frame = picam2.capture_array()
@@ -295,46 +302,54 @@ while True:
             
             plist = np.array(classify_image(interpreter, image))
             probsum += plist
+            
             if not val():
                 #resets the probability sum
                 probsum = np.zeros(len(labels), dtype=float)
                 break
+
     #print("DB loop complete")
     first = 0
     top = labels[np.argmax(probsum)]
     topprob = max(probsum)/scantimes
     if max(probsum)<=0:
         top = "N/A"
+    else:
+        lastscan = top
+        lastprob = topprob
 
-    #is it within range or not   
-    cv2.putText(frame, f"{label_text}", (10, 30),
+
+
+       
+    cv2.putText(frame, f"In range: {label_text}", (10, 30),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, G, R), 2)
     
-    #input from ultrasonic
-    cv2.putText(frame, f"{round(dist,3)}", (10, 60),
+    cv2.putText(frame, f"Distance: {round(dist,3)} cm", (10, 60),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, G, R), 2)
     
-    #how sure is the AI? also what category does it think the item is in
-    cv2.putText(frame, f"{top} {round(topprob,3)}", (10, 90),
+    cv2.putText(frame, f"Prediction: {top} with {round(topprob,3)*100}% confidence", (10, 90),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, G, R), 2)
+    
+    cv2.putText(frame, f"Last scan: {lastscan} with {round(lastprob,3)*100}% confidence", (10, 120),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 2)
 
-    #Name of the custom window
     cv2.imshow("trash bin ahh", frame)
 
     #controls servos
-    if not val() or recyclability[np.argmax(probsum)]=="N":
-        s0(0)
-        s1(0)
-    elif recyclability[np.argmax(probsum)] == "T":
+    if recyclability[np.argmax(probsum)] == "T" and top != "N/A":
         s0(90)
         s1(0)
-        waitcheck(5)
-    elif recyclability[np.argmax(probsum)] == "R":
+        countdownreset()
+    elif recyclability[np.argmax(probsum)] == "R" and top != "N/A":
         s1(90)
         s0(0)
-        waitcheck(5)
-    #resets the probability sum
-    probsum = np.zeros(len(labels), dtype=float)
+        countdownreset()
+
+    if timeout():
+        s0(0)
+        s1(0)
+
+    
     
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
