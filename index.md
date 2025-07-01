@@ -64,6 +64,9 @@ Because of the long queue, and questionable print quality observed from other pe
 
 My next task was to print the two trash cans, the lids, and their lid axles. I printed them all at once for an overnight print, which used 300g of PETG and came scarily close to using all the filament, which would've stopped the print midway. The print ended up taking about 9 hours, all at once. As expected the print did deteriorate in quality when printing the 90 dergee overhangs, but it was in a way that was acceptable and had little effect on the function of the print as a whole. Due to the printer being open air, there was some warping of the bottom layers, but the built-in chamfer of the lower part of the trash can made it invisible when viewed from above. Warping happens when the plastic cools unevenly and center pulls on the outside edges, causing them to lift off the build plate and cause warping. I had my prints warp before, and after cleaning my build plate the warping became less severe.
 
+<img src="warp.png" width="650" height = "500">
+<img src="warpd.png" width="800" height = "350">
+
 ### Assembling
 I designed my model to use three different types of screws. The fan and bottom plate were attatched to the lid with m3 screws, or screws with a major diameter of 3mm. Every other part was attatched with m2.5 screws, where the parts were smaller and it would be hard to put larger screws or screw holes. The one exception was the wire cover, where the cover was too thin for the m2.5 screws, so I ended up using an m1.5 screw to secure it in place.
 
