@@ -57,6 +57,7 @@ I uploaded the Raspberry Pi file into a brand new Python virtual environment to 
 I wired a 5V power source to a small breadboard to provide a 5V power supply to the ultrasonic sensor and the two servos. Then, I made a voltage divider circuit out of three 10KΩ resistors so that the Ultrasonic sensor could send 3.3V signals back to the Raspberry Pi through the GPIO(General Purpose Input/Output) pins. I also wired the servo signal pins to the GPIO pins and wired the voltage pins to the 5V power supply. Additionally, I re-soldered the wires going between the breadboard and GPIO pins on the Raspberry Pi to reduce their length.
 
 <img src="schematic.png" width="600" height = "450">
+<img src="zoomout.png" width="300" height = "450"> <img src="zoomin.png" width="500" height = "400">
 
 
 ### Scripting the electronics
