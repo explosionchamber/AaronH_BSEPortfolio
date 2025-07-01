@@ -76,6 +76,8 @@ The main challenge of CAD and design is trying to satisfy all the design require
 -physically possible to be assembled once printed
 
 Another challenge that I had was related to the lids of the 3D printed trash bins. Due to a faulty GrabCAD model, My lid's clearances were completley innacurate. The space in between the two sections was too narrow so it couldn't fit onto the bin at all. Additionally, the clearances I had left out for the servos were completley off, so even if I had sanded down the attatchment points on the lid, It wouldn't even be possible to open. To fix this, all I could really do was to measure out the mistakes and reprint the lid so that it could work.
+<img src="scam.png" width="300" height = "400">
+<img src="cad.png" width="300" height = "400">
 
 Assembly of the electronics case proved to be challenging. I designed it to be as compact as possible so that it would take up the least amount of space needed, which resulted in the wires getting very pressed together, and occasionallly coming lose, forcing me to go back, take off the lid, rewire everything, and then screw it back on. I did this a few times before everything finally worked. Later on, I also had an issue with the resistors on the circuit board. I tried to replace the old ones, which my instructors said were weird because I had soldered redudant joints onto them, but when I tried them, my ultrasonic sensor broke down. Only the old ones worked, so I left it at that.
 
