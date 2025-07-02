@@ -220,7 +220,7 @@ The next step for my project is to integrate my own Tensorflow Lite model from T
 | DC Barrel Jack Adapter | 5V Power Supply | $1.89 | <a href="https://www.amazon.com/Female-2-1x5-5MM-2-5x5-5MM-Connector-5-5x2-1/dp/B0B7KG6FVH/"> Link </a>
 
 # Project Code (Headed)
-```
+```python3
 #Input: Camera and Ultrasonic Sensor
 #Output: Servo 0 and Servo 1
 
@@ -432,7 +432,7 @@ picam2.stop()
 ```
 
 # Project Code (Headless)
-```
+```python3
 #camera packages
 from picamera2 import Picamera2
 import cv2
