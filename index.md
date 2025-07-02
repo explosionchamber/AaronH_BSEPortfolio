@@ -21,7 +21,7 @@ My project provides an effortless solution to deciding whether trash should thro
 # !!!!edits needed
 **Don't forget to replace the text below with the embedding for your milestone video. Go to Youtube, click Share -> Embed, and copy and paste the code to replace what's below.**
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/WIRK_pGdIdA?si=Jmkf0DeEBADPxmr3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mXxHEJFORzs?si=5PXfBaCRD7nCJeey" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 For your final milestone, explain the outcome of your project. Key details to include are:
 - What you've accomplished since your previous milestone
@@ -89,6 +89,7 @@ The main challenge of CAD and design is trying to satisfy all the design require
 -physically possible to be assembled once printed
 
 Another challenge that I had was related to the lids of the 3D printed trash bins. Due to a faulty GrabCAD model, My lid's clearances were completley innacurate. The space in between the two sections was too narrow so it couldn't fit onto the bin at all. Additionally, the clearances I had left out for the servos were completley off, so even if I had sanded down the attatchment points on the lid, It wouldn't even be possible to open. To fix this, all I could really do was to measure out the mistakes and reprint the lid so that it could work.
+
 <img src="scam.png" width="300" height = "400">
 <img src="cad.png" width="300" height = "400">
 
