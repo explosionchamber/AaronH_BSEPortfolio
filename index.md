@@ -198,6 +198,9 @@ pip3 install -e .
 ## Next steps
   The next step for my project is to integrate my own Tensorflow Lite model from Teachable Machine onto the Raspberry Pi. This way I can learn how to add my own custom objects to be detected by the Raspberry Pi. I can also improve on the quality of the current model by training it more on the Teachable Machine website.
 
+# CAD Models
+<a href="https://drive.google.com/drive/folders/1im89rB-73-HOJeIZ_mWC03cHX8bC5fyC"> Google Drive Link </a>
+
 # Bill of Materials
 
 | **Part** | **Note** | **Price** | **Link** |
