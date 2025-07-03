@@ -38,7 +38,7 @@ For your final milestone, explain the outcome of your project. Key details to in
 
 Wiring work and CAD for the trash bins and electronics case, and 3D printing the parts
 
-INSERT IMAGE HERE
+<img src="complete.png" width="800" height = "600">
 
 I used Onshape to design a 3D models for my project. I used reference models from GrabCAD to get the dimensions of the electronics, and the modeled around them. I incorporated the Raspberry Pi, ultrasonic sensor, fan, power jack, camera, and all the circuitry into one case. I also re-soldered the wires to shorten their length to make them fit better in the case. Then, I designeded two trash bins, one with a trash symbol and the other with a recycling symbol, and a lid and hinge for the servos to actuate. Because of the innacurate dimensions, I had to reprint the lids.
 
@@ -167,6 +167,7 @@ For this milestone, I set up the Raspberry Pi to be able to be controlled by my 
 ### SSH-ing into the Raspberry Pi
 When flashing the SD card for the Raspberry Pi, I set the hostname and login for the Raspberry Pi so I could SSH into it. I set up a way to quickly access the Raspberry Pi host without needing to run a complicated set of commands using Visual Studio Code. 
 <img src="rpi.png" width="600" height = "350">
+<a href="https://www.thingbits.net/products/raspberry-pi-4-model-b-with-2gb-4gb-8gb-ram"> Source </a> 
 
 
 ### Setting up the VNC
